@@ -1,5 +1,8 @@
 ﻿using Contracts;
 using Entities;
+using Entities.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +14,21 @@ namespace Repository
     public class RepositoryManager : IRepositoryManager
     {
         private RepositoryContext _repositoryContext;
+        private AuthenticationContext _authenticationContext;
         private IRealEstateRepository _realEstateRepository;
         private ICommentRepository _commentRepository;
-        public RepositoryManager(RepositoryContext repositoryContext)
+        private AccountRepository _accountRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IConfiguration _configuration;
+
+        public RepositoryManager(RepositoryContext repositoryContext, AuthenticationContext authenticationContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             _repositoryContext = repositoryContext;
+            _authenticationContext = authenticationContext;
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _configuration = configuration;
         }
 
         public IRealEstateRepository RealEstate
@@ -38,6 +51,26 @@ namespace Repository
             }
         }
 
-        public void Save() => _repositoryContext.SaveChanges();
+        public IAccountRepository Account
+        {
+            get
+            {
+                if (_accountRepository == null)
+                    _accountRepository = new AccountRepository(_userManager, _roleManager, _configuration, _authenticationContext);
+                return _accountRepository;
+            }
+        }
+
+        public void Save()
+        {
+            if (_repositoryContext.ChangeTracker.HasChanges())
+            {
+                _repositoryContext.SaveChanges();
+            }
+            if(_authenticationContext.ChangeTracker.HasChanges())
+            {
+                _authenticationContext.SaveChanges();
+            }
+        }
     }
 }

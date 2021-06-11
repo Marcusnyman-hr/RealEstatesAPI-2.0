@@ -17,7 +17,7 @@ namespace Repository
         {
         }
         public IEnumerable<RealEstate> GetAllRealEstates(bool trackChanges, SkipAndTakeRP skipAndTakeRP) 
-            {
+        {
             if(skipAndTakeRP == null)
             {
                 throw new ArgumentNullException(nameof(skipAndTakeRP));
@@ -37,5 +37,7 @@ namespace Repository
         public RealEstate GetRealEstate(bool trackChanges, Guid realEstateId) =>
             FindByCondition(re => re.Id.Equals(realEstateId), trackChanges)
             .SingleOrDefault();
+
+        public void CreateRealEstate(RealEstate realEstate) => Create(realEstate);
     }
 }

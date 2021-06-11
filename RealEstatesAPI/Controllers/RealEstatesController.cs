@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Contracts;
+using Entities.Models;
 using Helpers.ResourceParameters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RealEstatesAPI.DTOS;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace RealEstatesAPI.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RealEstatesController : ControllerBase
@@ -23,6 +25,7 @@ namespace RealEstatesAPI.Controllers
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<IEnumerable<RealEstateForListDto>> GetRealEstates([FromQuery] SkipAndTakeRP skipAndTakeRP) 
         {
@@ -33,7 +36,8 @@ namespace RealEstatesAPI.Controllers
             }
             return Ok(_mapper.Map<IEnumerable<RealEstateForListDto>>(realEstatesFromRepo));
         }
-        [HttpGet("{realEstateId}")]
+        [AllowAnonymous]
+        [HttpGet("{realEstateId}", Name ="GetRealEstate")]
         public IActionResult GetRealEstate(Guid realEstateId)
         {
             var realEstateFromRepo = _repository.RealEstate.GetRealEstate(trackChanges: false, realEstateId);
@@ -41,11 +45,30 @@ namespace RealEstatesAPI.Controllers
             {
                 return NotFound();
             }
-            var commentsFromRepo = _repository.Comment.GetComments(realEstateId, trackChanges: false);
-            realEstateFromRepo.Comments = commentsFromRepo.ToList();
-            return Ok(_mapper.Map<AuthorizedRealEstateDto>(realEstateFromRepo));
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var commentsFromRepo = _repository.Comment.GetComments(realEstateId, trackChanges: false);
+                realEstateFromRepo.Comments = commentsFromRepo.ToList();
+                return Ok(_mapper.Map<AuthorizedRealEstateDto>(realEstateFromRepo));
+            }
+            return Ok(_mapper.Map<RealEstateDto>(realEstateFromRepo));
         }
-        //Authorized
+        [HttpPost]
+        public ActionResult<CreatedRealEstateDto> CreateRealEstate([FromBody] CreateRealEstateDto realEstate)
+        {
+            var userId = _repository.Account.GetUserIdByUserName(User.Identity.Name).Result;
+            var realEstateEntity = _mapper.Map<RealEstate>(realEstate);
+            realEstateEntity.CreatedOn = DateTime.Now;
+            realEstateEntity.UserId = Guid.Parse(userId);
+            _repository.RealEstate.CreateRealEstate(realEstateEntity);
+            _repository.Save();
+            var realEstateToReturn = _mapper.Map<CreatedRealEstateDto>(realEstateEntity);
+            return CreatedAtRoute("GetRealEstate",
+                new { realEstateId = realEstateToReturn.Id }, realEstateToReturn);
+
+        }
+
         //[HttpGet("{realEstateId}")]
         //public IActionResult GetRealEstate(Guid realEstateId)
         //{

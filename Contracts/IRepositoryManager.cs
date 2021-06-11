@@ -10,6 +10,7 @@ namespace Contracts
     {
         IRealEstateRepository RealEstate { get; }
         ICommentRepository Comment { get; }
+        IAccountRepository Account { get; }
         void Save();
     }
 }

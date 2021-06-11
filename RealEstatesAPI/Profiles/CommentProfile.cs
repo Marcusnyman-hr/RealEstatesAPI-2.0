@@ -12,6 +12,7 @@ namespace RealEstatesAPI.Profiles
         public CommentProfile()
         {
             CreateMap<Entities.Models.Comment, DTOS.CommentDto>();
+            CreateMap<DTOS.CreateCommentDto, Entities.Models.Comment>();
         }
     }
 }
