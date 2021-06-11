@@ -1,3 +1,4 @@
+using Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RealEstatesAPI.Extensions;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +32,11 @@ namespace RealEstatesAPI
         {
             services.ConfigureCors();
             services.ConfigureIISIntegration();
+            services.ConfigureIdentitySqlContext(Configuration);
+            services.ConfigureIdentity();
+            services.ConfigureAuthenticationAndJwtBearer(Configuration);
             services.ConfigureSqlContext(Configuration);
+            services.AddScoped<IAccountRepository, AccountRepository>();
             services.ConfigureRepositoryManager();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
@@ -64,6 +70,7 @@ namespace RealEstatesAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
