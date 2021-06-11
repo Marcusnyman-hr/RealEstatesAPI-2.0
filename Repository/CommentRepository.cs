@@ -16,6 +16,12 @@ namespace Repository
         {
         }
 
+        public void CreateComment(Comment comment) => Create(comment);
+
+        public Comment GetComment(Guid commentId, bool trackChanges) =>
+            FindByCondition(c => c.Id.Equals(commentId), trackChanges)
+            .FirstOrDefault();
+
         public IEnumerable<Comment> GetComments(Guid realEstateId, bool trackChanges) =>
             FindByCondition(c => c.RealEstateId.Equals(realEstateId), trackChanges)
             .OrderBy(c => c.CreatedOn);

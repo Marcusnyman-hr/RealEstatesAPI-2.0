@@ -1,4 +1,5 @@
 ﻿using Contracts;
+using Entities;
 using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -18,11 +19,13 @@ namespace Repository
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IConfiguration _configuration;
-        public AccountRepository(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        private readonly AuthenticationContext _authenticationContext;
+        public AccountRepository(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, AuthenticationContext authenticationContext)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
             _configuration = configuration;
+            _authenticationContext = authenticationContext;
         }
 
         public async Task<Response> RegisterAccount(RegisterModel newUser)
@@ -87,10 +90,28 @@ namespace Repository
             return new Token() { };
         }
 
-        public async Task<ApplicationUser> GetUserById(string userId)
+        public Task<ApplicationUser> GetUserById(string userId)
         {
-            var user = await userManager.FindByIdAsync(userId);
+            var userRatings = _authenticationContext.Ratings.Where(r => r.UserId.Equals(userId)).ToList();
+            var user =  userManager.FindByIdAsync(userId);
+            //if(userRatings != null)
+            //{
+            //    user.Result.Ratings = userRatings;
+            //}
             return user;
         }
+
+        public Response UpdateUser(ApplicationUser updatedUser)
+        {
+            var success = userManager.UpdateAsync(updatedUser);
+            return new Response() { Status = "Success", Message = "Updated user" };
+        }
+
+        public async Task<string> GetUserIdByUserName(string username)
+        {
+            ApplicationUser user = await userManager.FindByNameAsync(username);
+            return user.Id;
+        }
+
     }
 }

@@ -8,8 +8,8 @@ namespace Entities
     {
         public AuthenticationContext(DbContextOptions<AuthenticationContext> options) : base(options)
         {
-
         }
+        public DbSet<Rating> Ratings { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

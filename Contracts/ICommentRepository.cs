@@ -9,7 +9,9 @@ namespace Contracts
 {
     public interface ICommentRepository
     {
+        Comment GetComment(Guid commentId, bool trackChanges);
         IEnumerable<Comment> GetComments(Guid realEstateId, bool trackChanges);
         IEnumerable<Comment> GetCommentsByUserId(Guid userId, bool trackChanges);
+        void CreateComment(Comment comment);
     }
 }

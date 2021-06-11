@@ -13,5 +13,7 @@ namespace Contracts
         Task<Token> GetJwtToken(LoginModel loginInfo);
         //Task<IQueryable<ApplicationUser>> GetUsersAsync();
         Task<ApplicationUser> GetUserById(string userId);
+        Response UpdateUser(ApplicationUser updatedUser);
+        Task<string> GetUserIdByUserName(string username);
     }
 }
