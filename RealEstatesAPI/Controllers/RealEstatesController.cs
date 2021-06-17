@@ -48,7 +48,7 @@ namespace RealEstatesAPI.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                var commentsFromRepo = _repository.Comment.GetComments(realEstateId, trackChanges: false);
+                var commentsFromRepo = _repository.Comment.GetLatestCommentsForRealEstate(trackChanges: false, realEstateId);
                 realEstateFromRepo.Comments = commentsFromRepo.ToList();
                 return Ok(_mapper.Map<AuthorizedRealEstateDto>(realEstateFromRepo));
             }
@@ -61,6 +61,7 @@ namespace RealEstatesAPI.Controllers
             var realEstateEntity = _mapper.Map<RealEstate>(realEstate);
             realEstateEntity.CreatedOn = DateTime.Now;
             realEstateEntity.UserId = Guid.Parse(userId);
+            realEstateEntity.UserName = User.Identity.Name;
             _repository.RealEstate.CreateRealEstate(realEstateEntity);
             _repository.Save();
             var realEstateToReturn = _mapper.Map<CreatedRealEstateDto>(realEstateEntity);

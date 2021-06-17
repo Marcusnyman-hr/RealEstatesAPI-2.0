@@ -14,5 +14,6 @@ namespace RealEstatesAPI.DTOS
         public int RentingPrice { get; set; }
         public bool CanBeSold { get; set; }
         public bool CanBeRented { get; set; }
+        public string ImgUrl { get; set; }
     }
 }

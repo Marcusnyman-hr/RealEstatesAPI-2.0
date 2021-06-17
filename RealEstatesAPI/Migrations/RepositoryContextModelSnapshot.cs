@@ -51,7 +51,70 @@ namespace RealEstatesAPI.Migrations
                         {
                             Id = new Guid("f799e33e-651e-431b-adbc-f7d2f5dc60a8"),
                             Content = "This is a comment for small house",
-                            CreatedOn = new DateTime(2021, 5, 30, 16, 33, 8, 686, DateTimeKind.Local).AddTicks(9257),
+                            CreatedOn = new DateTime(2021, 6, 5, 10, 10, 38, 467, DateTimeKind.Local).AddTicks(8071),
+                            RealEstateId = new Guid("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                            UserId = new Guid("fe987917-89e7-49ca-b92d-6c49efc26dfb"),
+                            UserName = "Classe"
+                        },
+                        new
+                        {
+                            Id = new Guid("f799e33e-651e-431b-adbc-f7d2f5dc60a9"),
+                            Content = "This is a another comment for small house",
+                            CreatedOn = new DateTime(2021, 6, 5, 10, 10, 38, 468, DateTimeKind.Local).AddTicks(863),
+                            RealEstateId = new Guid("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                            UserId = new Guid("fe987917-89e7-49ca-b92d-6c49efc26dfb"),
+                            UserName = "Classe"
+                        },
+                        new
+                        {
+                            Id = new Guid("f799e33e-651e-431b-adbc-f7d2f6dc60a8"),
+                            Content = "This is a third comment for small house",
+                            CreatedOn = new DateTime(2021, 6, 5, 10, 10, 38, 468, DateTimeKind.Local).AddTicks(922),
+                            RealEstateId = new Guid("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                            UserId = new Guid("fe987917-89e7-49ca-b92d-6c49efc26dfb"),
+                            UserName = "Classe"
+                        },
+                        new
+                        {
+                            Id = new Guid("f789e33e-651e-431b-adbc-f7d2f6dc60a8"),
+                            Content = "This is a third comment for small house",
+                            CreatedOn = new DateTime(2021, 6, 5, 10, 10, 38, 468, DateTimeKind.Local).AddTicks(938),
+                            RealEstateId = new Guid("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                            UserId = new Guid("fe987917-89e7-49ca-b92d-6c49efc26dfb"),
+                            UserName = "Classe"
+                        },
+                        new
+                        {
+                            Id = new Guid("f899e33e-651e-431b-adbc-f7d2f6dc60a8"),
+                            Content = "This is a third comment for small house",
+                            CreatedOn = new DateTime(2021, 6, 5, 10, 10, 38, 468, DateTimeKind.Local).AddTicks(997),
+                            RealEstateId = new Guid("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                            UserId = new Guid("fe987917-89e7-49ca-b92d-6c49efc26dfb"),
+                            UserName = "Classe"
+                        },
+                        new
+                        {
+                            Id = new Guid("f799e33e-651e-431b-bdbc-f7d2f6dc60a8"),
+                            Content = "This is a third comment for small house",
+                            CreatedOn = new DateTime(2021, 6, 5, 10, 10, 38, 468, DateTimeKind.Local).AddTicks(1014),
+                            RealEstateId = new Guid("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                            UserId = new Guid("fe987917-89e7-49ca-b92d-6c49efc26dfb"),
+                            UserName = "Classe"
+                        },
+                        new
+                        {
+                            Id = new Guid("f799e33e-651e-431b-acbc-f7d2f6dc60a8"),
+                            Content = "This is a third comment for small house",
+                            CreatedOn = new DateTime(2021, 6, 5, 10, 10, 38, 468, DateTimeKind.Local).AddTicks(1028),
+                            RealEstateId = new Guid("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                            UserId = new Guid("fe987917-89e7-49ca-b92d-6c49efc26dfb"),
+                            UserName = "Classe"
+                        },
+                        new
+                        {
+                            Id = new Guid("f699e33e-651e-431b-acbc-f7d2f6dc60a8"),
+                            Content = "This is a third comment for small house",
+                            CreatedOn = new DateTime(2021, 6, 5, 10, 10, 38, 468, DateTimeKind.Local).AddTicks(1042),
                             RealEstateId = new Guid("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
                             UserId = new Guid("fe987917-89e7-49ca-b92d-6c49efc26dfb"),
                             UserName = "Classe"
@@ -88,6 +151,9 @@ namespace RealEstatesAPI.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("RealEstateTypeId")
                         .HasColumnType("int");
 
@@ -105,6 +171,9 @@ namespace RealEstatesAPI.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("RealEstateTypeId");
@@ -120,7 +189,7 @@ namespace RealEstatesAPI.Migrations
                             CanBeSold = true,
                             ConstructionYear = 2005,
                             Contact = "0888-888-888",
-                            CreatedOn = new DateTime(2021, 5, 26, 16, 33, 8, 676, DateTimeKind.Local).AddTicks(2945),
+                            CreatedOn = new DateTime(2021, 6, 1, 10, 10, 38, 464, DateTimeKind.Local).AddTicks(8581),
                             Description = "You will love it. The view is great!",
                             RealEstateTypeId = 1,
                             RentingPrice = 500,
@@ -136,7 +205,7 @@ namespace RealEstatesAPI.Migrations
                             CanBeSold = true,
                             ConstructionYear = 2005,
                             Contact = "0888-888-888",
-                            CreatedOn = new DateTime(2021, 5, 26, 16, 33, 8, 685, DateTimeKind.Local).AddTicks(1741),
+                            CreatedOn = new DateTime(2021, 6, 1, 10, 10, 38, 465, DateTimeKind.Local).AddTicks(6757),
                             Description = "You will love it. The view is great!",
                             RealEstateTypeId = 1,
                             RentingPrice = 500,
@@ -152,7 +221,7 @@ namespace RealEstatesAPI.Migrations
                             CanBeSold = true,
                             ConstructionYear = 1990,
                             Contact = "0888-888-888",
-                            CreatedOn = new DateTime(2021, 5, 26, 16, 33, 8, 685, DateTimeKind.Local).AddTicks(1927),
+                            CreatedOn = new DateTime(2021, 6, 1, 10, 10, 38, 465, DateTimeKind.Local).AddTicks(6854),
                             Description = "This apartment is not nice, but cheap",
                             RealEstateTypeId = 1,
                             RentingPrice = 300,
@@ -168,7 +237,7 @@ namespace RealEstatesAPI.Migrations
                             CanBeSold = true,
                             ConstructionYear = 2019,
                             Contact = "0888-888-888",
-                            CreatedOn = new DateTime(2021, 5, 26, 16, 33, 8, 685, DateTimeKind.Local).AddTicks(1961),
+                            CreatedOn = new DateTime(2021, 6, 1, 10, 10, 38, 465, DateTimeKind.Local).AddTicks(6879),
                             Description = "This is premium living!",
                             RealEstateTypeId = 1,
                             RentingPrice = 2000,
@@ -184,7 +253,7 @@ namespace RealEstatesAPI.Migrations
                             CanBeSold = true,
                             ConstructionYear = 2019,
                             Contact = "0888-888-888",
-                            CreatedOn = new DateTime(2021, 5, 26, 16, 33, 8, 685, DateTimeKind.Local).AddTicks(1989),
+                            CreatedOn = new DateTime(2021, 6, 1, 10, 10, 38, 465, DateTimeKind.Local).AddTicks(6896),
                             Description = "Perfect house for small family",
                             RealEstateTypeId = 2,
                             RentingPrice = 0,
@@ -200,7 +269,7 @@ namespace RealEstatesAPI.Migrations
                             CanBeSold = true,
                             ConstructionYear = 2016,
                             Contact = "0888-888-888",
-                            CreatedOn = new DateTime(2021, 5, 26, 16, 33, 8, 685, DateTimeKind.Local).AddTicks(2188),
+                            CreatedOn = new DateTime(2021, 6, 1, 10, 10, 38, 465, DateTimeKind.Local).AddTicks(6933),
                             Description = "Perfect house for a medium sized family",
                             RealEstateTypeId = 2,
                             RentingPrice = 0,
@@ -216,7 +285,7 @@ namespace RealEstatesAPI.Migrations
                             CanBeSold = true,
                             ConstructionYear = 2014,
                             Contact = "0888-888-888",
-                            CreatedOn = new DateTime(2021, 5, 26, 16, 33, 8, 685, DateTimeKind.Local).AddTicks(2215),
+                            CreatedOn = new DateTime(2021, 6, 1, 10, 10, 38, 465, DateTimeKind.Local).AddTicks(6969),
                             Description = "Perfect house for a big family!",
                             RealEstateTypeId = 2,
                             RentingPrice = 0,
@@ -232,7 +301,7 @@ namespace RealEstatesAPI.Migrations
                             CanBeSold = true,
                             ConstructionYear = 2014,
                             Contact = "0888-888-888",
-                            CreatedOn = new DateTime(2021, 5, 26, 16, 33, 8, 685, DateTimeKind.Local).AddTicks(2237),
+                            CreatedOn = new DateTime(2021, 6, 1, 10, 10, 38, 465, DateTimeKind.Local).AddTicks(6985),
                             Description = "Perfect house for a big family!",
                             RealEstateTypeId = 2,
                             RentingPrice = 0,
@@ -248,7 +317,7 @@ namespace RealEstatesAPI.Migrations
                             CanBeSold = true,
                             ConstructionYear = 2010,
                             Contact = "0888-888-888",
-                            CreatedOn = new DateTime(2021, 5, 26, 16, 33, 8, 685, DateTimeKind.Local).AddTicks(2257),
+                            CreatedOn = new DateTime(2021, 6, 1, 10, 10, 38, 465, DateTimeKind.Local).AddTicks(7009),
                             Description = "The perfect office for a medium sized company",
                             RealEstateTypeId = 3,
                             RentingPrice = 0,
@@ -264,7 +333,7 @@ namespace RealEstatesAPI.Migrations
                             CanBeSold = true,
                             ConstructionYear = 2010,
                             Contact = "0888-888-888",
-                            CreatedOn = new DateTime(2021, 5, 26, 16, 33, 8, 685, DateTimeKind.Local).AddTicks(2276),
+                            CreatedOn = new DateTime(2021, 6, 1, 10, 10, 38, 465, DateTimeKind.Local).AddTicks(7021),
                             Description = "The perfect office for a minicompany",
                             RealEstateTypeId = 3,
                             RentingPrice = 0,
@@ -280,7 +349,7 @@ namespace RealEstatesAPI.Migrations
                             CanBeSold = true,
                             ConstructionYear = 2000,
                             Contact = "0888-888-888",
-                            CreatedOn = new DateTime(2021, 5, 26, 16, 33, 8, 685, DateTimeKind.Local).AddTicks(2300),
+                            CreatedOn = new DateTime(2021, 6, 1, 10, 10, 38, 465, DateTimeKind.Local).AddTicks(7053),
                             Description = "Gigantic warehouse that was formerly used by Amazon! Can fit 4.000.000 cars inside.",
                             RealEstateTypeId = 4,
                             RentingPrice = 0,

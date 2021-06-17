@@ -23,7 +23,71 @@ namespace Entities.Configuration
                     CreatedOn = DateTime.Now.AddDays(-10),
                     RealEstateId = Guid.Parse("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
                     UserId = Guid.Parse("fe987917-89e7-49ca-b92d-6c49efc26dfb")
+                },
+                new Comment()
+                {
+                    Id = Guid.Parse("f799e33e-651e-431b-adbc-f7d2f5dc60a9"),
+                    Content = "This is a another comment for small house",
+                    UserName = "Classe",
+                    CreatedOn = DateTime.Now.AddDays(-10),
+                    RealEstateId = Guid.Parse("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                    UserId = Guid.Parse("fe987917-89e7-49ca-b92d-6c49efc26dfb")
+                },
+                new Comment()
+                {
+                    Id = Guid.Parse("f799e33e-651e-431b-adbc-f7d2f6dc60a8"),
+                    Content = "This is a third comment for small house",
+                    UserName = "Classe",
+                    CreatedOn = DateTime.Now.AddDays(-10),
+                    RealEstateId = Guid.Parse("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                    UserId = Guid.Parse("fe987917-89e7-49ca-b92d-6c49efc26dfb")
+                },
+                new Comment()
+                {
+                    Id = Guid.Parse("f789e33e-651e-431b-adbc-f7d2f6dc60a8"),
+                    Content = "This is a third comment for small house",
+                    UserName = "Classe",
+                    CreatedOn = DateTime.Now.AddDays(-10),
+                    RealEstateId = Guid.Parse("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                    UserId = Guid.Parse("fe987917-89e7-49ca-b92d-6c49efc26dfb")
+                },
+                new Comment()
+                {
+                    Id = Guid.Parse("f899e33e-651e-431b-adbc-f7d2f6dc60a8"),
+                    Content = "This is a third comment for small house",
+                    UserName = "Classe",
+                    CreatedOn = DateTime.Now.AddDays(-10),
+                    RealEstateId = Guid.Parse("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                    UserId = Guid.Parse("fe987917-89e7-49ca-b92d-6c49efc26dfb")
+                },
+                new Comment()
+                {
+                    Id = Guid.Parse("f799e33e-651e-431b-bdbc-f7d2f6dc60a8"),
+                    Content = "This is a third comment for small house",
+                    UserName = "Classe",
+                    CreatedOn = DateTime.Now.AddDays(-10),
+                    RealEstateId = Guid.Parse("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                    UserId = Guid.Parse("fe987917-89e7-49ca-b92d-6c49efc26dfb")
+                },
+                new Comment()
+                {
+                    Id = Guid.Parse("f799e33e-651e-431b-acbc-f7d2f6dc60a8"),
+                    Content = "This is a third comment for small house",
+                    UserName = "Classe",
+                    CreatedOn = DateTime.Now.AddDays(-10),
+                    RealEstateId = Guid.Parse("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                    UserId = Guid.Parse("fe987917-89e7-49ca-b92d-6c49efc26dfb")
+                },
+                new Comment()
+                {
+                    Id = Guid.Parse("f699e33e-651e-431b-acbc-f7d2f6dc60a8"),
+                    Content = "This is a third comment for small house",
+                    UserName = "Classe",
+                    CreatedOn = DateTime.Now.AddDays(-10),
+                    RealEstateId = Guid.Parse("f30f7fd5-afe5-40f8-9294-7dea56fd106c"),
+                    UserId = Guid.Parse("fe987917-89e7-49ca-b92d-6c49efc26dfb")
                 }
+
             );
         }
     }

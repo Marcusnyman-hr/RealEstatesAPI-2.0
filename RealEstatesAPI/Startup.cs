@@ -9,10 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NLog;
 using RealEstatesAPI.Extensions;
 using Repository;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,6 +24,7 @@ namespace RealEstatesAPI
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -30,7 +33,7 @@ namespace RealEstatesAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.ConfigureCors();
+            services.AddCors();
             services.ConfigureIISIntegration();
             services.ConfigureIdentitySqlContext(Configuration);
             services.ConfigureIdentity();
@@ -39,6 +42,7 @@ namespace RealEstatesAPI
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.ConfigureRepositoryManager();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.ConfigureLoggerService();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -47,7 +51,7 @@ namespace RealEstatesAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerManager logger)
         {
             if (env.IsDevelopment())
             {
@@ -59,10 +63,14 @@ namespace RealEstatesAPI
             { 
                 app.UseHsts(); 
             }
+            app.ConfigureExceptionHandler(logger);
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCors("CorsPolicy");
             app.UseForwardedHeaders(new ForwardedHeadersOptions 
             { 
                 ForwardedHeaders = ForwardedHeaders.All 

@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Helpers;
 using Helpers.ResourceParameters;
 using System;
 using System.Collections.Generic;
@@ -26,18 +27,22 @@ namespace Repository
             FindAll(trackChanges)
             .OrderBy(c => c.CreatedOn).
             ToList();
-            if (skipAndTakeRP.Take > 100) skipAndTakeRP.Take = 100;
-            if (skipAndTakeRP.Skip == 0 && skipAndTakeRP.Take == 0)
-            {
-                return realEstates.Take(10);
-            }
+            skipAndTakeRP = HelperFunctions.ValidateAndCorrectSkipAndTake(skipAndTakeRP);
             return realEstates.Skip(skipAndTakeRP.Skip).Take(skipAndTakeRP.Take);
         }
 
         public RealEstate GetRealEstate(bool trackChanges, Guid realEstateId) =>
             FindByCondition(re => re.Id.Equals(realEstateId), trackChanges)
             .SingleOrDefault();
+        public bool RealEstateExists(bool trackChanges, Guid realEstateId) =>
+            FindByCondition(re => re.Id.Equals(realEstateId), trackChanges)
+            .Any();
 
         public void CreateRealEstate(RealEstate realEstate) => Create(realEstate);
+
+        public int GetAmountOfRealEstatesByUser(string userId)
+        {
+            return RepositoryContext.RealEstates.Where(re => re.UserId == Guid.Parse(userId)).Count();
+        }
     }
 }

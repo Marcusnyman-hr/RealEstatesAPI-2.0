@@ -15,5 +15,9 @@ namespace Contracts
         Task<ApplicationUser> GetUserById(string userId);
         Response UpdateUser(ApplicationUser updatedUser);
         Task<string> GetUserIdByUserName(string username);
+        Task<bool> UserExists(string username);
+        Task<bool> UserExistsById(string userId);
+        void AddRating(Rating rating);
+        double GetAvgRatingForUser(string userId);
     }
 }

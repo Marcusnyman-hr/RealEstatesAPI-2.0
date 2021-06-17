@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using LoggerService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -67,6 +68,10 @@ namespace RealEstatesAPI.Extensions
             b.MigrationsAssembly("RealEstatesAPI")));
         public static void ConfigureRepositoryManager(this IServiceCollection services) => 
             services.AddScoped<IRepositoryManager, RepositoryManager>();
+        public static void ConfigureLoggerService(this IServiceCollection services)
+        {
+            services.AddSingleton<ILoggerManager, LoggerManager>();
+        }
 
     }
 }

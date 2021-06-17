@@ -94,10 +94,6 @@ namespace Repository
         {
             var userRatings = _authenticationContext.Ratings.Where(r => r.UserId.Equals(userId)).ToList();
             var user =  userManager.FindByIdAsync(userId);
-            //if(userRatings != null)
-            //{
-            //    user.Result.Ratings = userRatings;
-            //}
             return user;
         }
 
@@ -113,5 +109,43 @@ namespace Repository
             return user.Id;
         }
 
+        public async Task<bool> UserExists(string username)
+        {
+            ApplicationUser user = await userManager.FindByNameAsync(username);
+            if(user == null)
+            {
+                return false;
+            }
+            return true;
+        }
+        public async Task<bool> UserExistsById(string userId)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void AddRating(Rating rating)
+        {
+            if(rating == null)
+            {
+                throw new ArgumentNullException(nameof(rating));
+            }
+            _authenticationContext.Ratings.Add(rating);
+        }
+
+        public double GetAvgRatingForUser(string userId)
+        {
+            var ratings = _authenticationContext.Ratings
+                .Where(r => r.UserId == userId).ToList();
+            if (ratings.Count() != 0)
+            {
+                return ratings.Average(r=>r.Value);
+            }
+            return 0;
+        }
     }
 }

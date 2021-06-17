@@ -13,5 +13,7 @@ namespace Contracts
         IEnumerable<RealEstate> GetAllRealEstates(bool trackChanges, SkipAndTakeRP skipAndTakeRP);
         RealEstate GetRealEstate(bool trackChanges, Guid realEstateId);
         void CreateRealEstate(RealEstate realEstate);
+        bool RealEstateExists(bool trackChanges, Guid realEstateId);
+        int GetAmountOfRealEstatesByUser(string userId);
     }
 }

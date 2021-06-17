@@ -24,5 +24,10 @@ namespace Entities
         public DbSet<RealEstate> RealEstates { get; set; }
         public DbSet<RealEstateType> RealEstateTypes { get; set; }
         public DbSet<Comment> Comments { get; set; }
+
+        public object DbSet()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

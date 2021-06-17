@@ -30,6 +30,8 @@ namespace Entities.Models
         public bool CanBeSold { get; set; }
         public bool CanBeRented { get; set; }
         public Guid UserId { get; set; }
+        public string UserName { get; set; }
+        public string ImgUrl { get; set; }
         [ForeignKey("RealEstateTypeId")]
         public RealEstateType PropertyType { get; set; }
         public int RealEstateTypeId { get; set; }

@@ -18,6 +18,8 @@ namespace Entities.Models
 
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
+        [Compare("Password", ErrorMessage = "Your passwords have to match!")]
+        public string ConfirmPassword { get; set; }
 
     }
 }

@@ -15,7 +15,7 @@ using Contracts;
 
 namespace RealEstatesAPI.Controllers
 {
-    [Route("api")]
+
     [ApiController]
     public class AccountsController : ControllerBase
     {
@@ -27,7 +27,7 @@ namespace RealEstatesAPI.Controllers
         }
         //register
         [HttpPost]
-        [Route("account/register")]
+        [Route("api/account/register")]
         public async Task<IActionResult> Register([FromForm] RegisterModel newUser)
         {
             var result = _accountRepository.RegisterAccount(newUser).Result;
@@ -37,13 +37,6 @@ namespace RealEstatesAPI.Controllers
             }
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
-        //[HttpGet]
-        //public IActionResult GetUsers()
-        //{
-        //    _accountRepository.GetUsersAsync();
-        //    return Ok();
-        //}
-
 
         [HttpPost]
         [Route("token")]
@@ -54,7 +47,6 @@ namespace RealEstatesAPI.Controllers
             {
                 return Unauthorized();
             }
-
             return Ok(newToken);
             }
         }
