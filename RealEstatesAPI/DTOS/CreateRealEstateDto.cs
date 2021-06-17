@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RealEstatesAPI.DTOS
 {
-    public class CreateRealEstateDto
+    public class CreateRealEstateDto : IValidatableObject
     {
         [Required(ErrorMessage = "Property title has to be provided.")]
         [MinLength(5, ErrorMessage = "Title has to contain atleast 5 characters")]
@@ -24,5 +24,12 @@ namespace RealEstatesAPI.DTOS
         public int SellingPrice { get; set; }
         public int RentingPrice { get; set; }
         public int Type { get; set; }
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+
+            if (SellingPrice == 0  && RentingPrice == 0 )
+                yield return new ValidationResult("You must have either a selling price, renting price or both.");
+        }
+
     }
 }

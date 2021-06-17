@@ -12,7 +12,11 @@ namespace RealEstatesAPI.Profiles
         public RealEstateProfile()
         {
             CreateMap<Entities.Models.RealEstate, DTOS.RealEstateForListDto>();
-            CreateMap<Entities.Models.RealEstate, DTOS.RealEstateDto>();
+            CreateMap<Entities.Models.RealEstate, DTOS.RealEstateDto>()
+                .ForMember(
+                dest => dest.RealEstateType,
+                opt => opt.MapFrom(src => src.PropertyType.Name)
+                );
             CreateMap<Entities.Models.RealEstate, DTOS.AuthorizedRealEstateDto>();
             CreateMap<Entities.Models.RealEstate, DTOS.CreatedRealEstateDto>();
             CreateMap<DTOS.CreateRealEstateDto, Entities.Models.RealEstate>()

@@ -12,7 +12,7 @@ namespace Entities.Models
         public decimal Rating { get; set; }
         public int amountOfRatings { get; set; }
         public int RealEstates { get; set; }
-        public int MyProperty { get; set; }
         public ICollection<Rating> Ratings { get; set; }
+
     }
 }

@@ -44,5 +44,10 @@ namespace Repository
         {
             return RepositoryContext.RealEstates.Where(re => re.UserId == Guid.Parse(userId)).Count();
         }
+
+        public RealEstateType GetRealEstateTypeById(int realEstateTypeId)
+        {
+            return RepositoryContext.RealEstateTypes.Where(ret => ret.Id == realEstateTypeId).FirstOrDefault();
+        }
     }
 }

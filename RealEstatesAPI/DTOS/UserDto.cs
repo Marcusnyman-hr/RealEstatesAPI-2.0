@@ -11,6 +11,6 @@ namespace RealEstatesAPI.DTOS
         public string UserName { get; set; }
         public int RealEstates { get; set; }
         public int Comments { get; set; }
-        public decimal Rating { get; set; }
+        public double Rating { get; set; }
     }
 }

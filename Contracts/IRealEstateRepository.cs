@@ -15,5 +15,6 @@ namespace Contracts
         void CreateRealEstate(RealEstate realEstate);
         bool RealEstateExists(bool trackChanges, Guid realEstateId);
         int GetAmountOfRealEstatesByUser(string userId);
+        RealEstateType GetRealEstateTypeById(int realEstateTypeId);
     }
 }

@@ -37,27 +37,27 @@ namespace RealEstatesAPI.Controllers
             var commentsByUserId = _repository.Comment.GetCommentsByUserId(Guid.Parse(userId), trackChanges: false).Count();
             var avgRating = _repository.Account.GetAvgRatingForUser(userId);
             var amountOfRealEstates = _repository.RealEstate.GetAmountOfRealEstatesByUser(userId);
-
-
-            return Ok(new
+            var userToSend = new UserDto
             {
-                username = username,
+                UserName = username,
                 RealEstates = amountOfRealEstates,
                 Comments = commentsByUserId,
                 Rating = avgRating
-            }) ;
+            };
+
+            return Ok(userToSend) ;
         }
-        [HttpGet]
-        [Route("/testing/test")]
-        public ActionResult TestFunc()
-        {
-            var user = _repository.Account.GetUserById("7012ec90-74f1-4154-a312-5091b56f0dd7").Result;
-            user.Rating = 3;
-            user.amountOfRatings++;
-            var res = _repository.Account.UpdateUser(user);
-            _repository.Save();
-            return Ok();
-        }
+        //[HttpGet]
+        //[Route("/testing/test")]
+        //public ActionResult TestFunc()
+        //{
+        //    var user = _repository.Account.GetUserById("7012ec90-74f1-4154-a312-5091b56f0dd7").Result;
+        //    user.Rating = 3;
+        //    user.amountOfRatings++;
+        //    var res = _repository.Account.UpdateUser(user);
+        //    _repository.Save();
+        //    return Ok();
+        //}
         [HttpPost("rate")]
         public async Task<ActionResult> RateUser(RateUserDto userRating)
         {
@@ -93,7 +93,7 @@ namespace RealEstatesAPI.Controllers
             var userWhosRatingId = await _repository.Account.GetUserIdByUserName(User.Identity.Name);
             if (userWhosRatingId == userId)
             {
-                return Forbid("You cant rate yourself, you silly goose!");
+                return StatusCode(403);
             }
             var ratingEntity = new Rating()
             {

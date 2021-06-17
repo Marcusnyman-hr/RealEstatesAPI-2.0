@@ -45,12 +45,15 @@ namespace RealEstatesAPI.Controllers
             {
                 return NotFound();
             }
-
+            
             if (User.Identity.IsAuthenticated)
             {
                 var commentsFromRepo = _repository.Comment.GetLatestCommentsForRealEstate(trackChanges: false, realEstateId);
                 realEstateFromRepo.Comments = commentsFromRepo.ToList();
-                return Ok(_mapper.Map<AuthorizedRealEstateDto>(realEstateFromRepo));
+                var realEstateType = _repository.RealEstate.GetRealEstateTypeById(realEstateFromRepo.RealEstateTypeId);
+                var realEstateToReturn = _mapper.Map<AuthorizedRealEstateDto>(realEstateFromRepo);
+                realEstateToReturn.RealEstateType = realEstateType.Name;
+                return Ok(realEstateToReturn);
             }
             return Ok(_mapper.Map<RealEstateDto>(realEstateFromRepo));
         }

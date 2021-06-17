@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Models
 {
-    public class RegisterModel
+    public class RegisterModel 
     {
         [Required(ErrorMessage = "User Name is required")]
         public string Username { get; set; }
@@ -18,8 +18,11 @@ namespace Entities.Models
 
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
+        [Required]
         [Compare("Password", ErrorMessage = "Your passwords have to match!")]
         public string ConfirmPassword { get; set; }
+ 
+        
 
     }
 }
