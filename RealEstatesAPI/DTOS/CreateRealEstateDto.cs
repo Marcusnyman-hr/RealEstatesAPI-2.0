@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace RealEstatesAPI.DTOS
         public int SellingPrice { get; set; }
         public int RentingPrice { get; set; }
         public int Type { get; set; }
+        public FileUpload ImageFile { get; set; }
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
 

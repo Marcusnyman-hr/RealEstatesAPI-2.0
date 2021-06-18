@@ -11,10 +11,13 @@ namespace Contracts
     public interface IRealEstateRepository
     {
         IEnumerable<RealEstate> GetAllRealEstates(bool trackChanges, SkipAndTakeRP skipAndTakeRP);
+        IEnumerable<RealEstate> GetAllRealEstatesByUsername(bool trackChanges, string username);
         RealEstate GetRealEstate(bool trackChanges, Guid realEstateId);
         void CreateRealEstate(RealEstate realEstate);
         bool RealEstateExists(bool trackChanges, Guid realEstateId);
         int GetAmountOfRealEstatesByUser(string userId);
         RealEstateType GetRealEstateTypeById(int realEstateTypeId);
+        Task<string> UploadImage(FileUpload file);
+        void UpdateRealEstate(RealEstate realEstate);
     }
 }

@@ -20,7 +20,7 @@ namespace Entities.Configuration
                     UserId = Guid.Parse("09f047af-baf6-4400-aeb0-260360ecdc03"),
                     CreatedOn = DateTime.Now.AddDays(-14),
                     Title = "Nice Apartment",
-                    Description = "You will love it. The view is great!",
+                    Description = "You will not love it. The view is not that great!",
                     Address = "Mladost 1A, Telerik Academy building",
                     Contact = "0888-888-888",
                     ConstructionYear = 2005,
@@ -29,7 +29,8 @@ namespace Entities.Configuration
                     CanBeRented = true,
                     CanBeSold = true,
                     RealEstateTypeId = 1,
-                    UserName = "Adam"
+                    UserName = "Adam",
+                    ImgUrl = "/uploads/apt1.jpg"
                     
                 },
                 new RealEstate()
@@ -47,7 +48,8 @@ namespace Entities.Configuration
                     CanBeRented = true,
                     CanBeSold = true,
                     RealEstateTypeId = 1,
-                    UserName = "Adam"
+                    UserName = "Adam",
+                    ImgUrl = "/uploads/apt2.jpg"
                 },
                 new RealEstate()
                 {
@@ -64,7 +66,8 @@ namespace Entities.Configuration
                     CanBeRented = true,
                     CanBeSold = true,
                     RealEstateTypeId = 1,
-                    UserName = "Adam"
+                    UserName = "Adam",
+                    ImgUrl = "/uploads/apt3.jpg"
                 },
                 new RealEstate()
                 {
@@ -81,7 +84,8 @@ namespace Entities.Configuration
                     CanBeRented = true,
                     CanBeSold = true,
                     RealEstateTypeId = 1,
-                    UserName = "Classe"
+                    UserName = "Classe",
+                    ImgUrl = "/uploads/apt4.jpg"
                 },
                 new RealEstate()
                 {
@@ -98,7 +102,8 @@ namespace Entities.Configuration
                     CanBeRented = false,
                     CanBeSold = true,
                     RealEstateTypeId = 2,
-                    UserName = "Classe"
+                    UserName = "Classe",
+                    ImgUrl = "/uploads/house1.jpg"
                 },
                 new RealEstate()
                 {
@@ -115,7 +120,8 @@ namespace Entities.Configuration
                     CanBeRented = false,
                     CanBeSold = true,
                     RealEstateTypeId = 2,
-                    UserName = "Classe"
+                    UserName = "Classe",
+                    ImgUrl = "/uploads/house2.jpg"
                 },
                 new RealEstate()
                 {
@@ -132,15 +138,16 @@ namespace Entities.Configuration
                     CanBeRented = false,
                     CanBeSold = true,
                     RealEstateTypeId = 2,
-                    UserName = "Classe"
+                    UserName = "Classe",
+                    ImgUrl = "/uploads/house3.jpg"
                 },
                 new RealEstate()
                 {
                     Id = Guid.Parse("51b4e09d-69da-4130-af68-c319ae70ca52"),
                     UserId = Guid.Parse("f6b60805-d507-470a-beaa-e020fc012845"),
                     CreatedOn = DateTime.Now.AddDays(-14),
-                    Title = "GIGANTIC house",
-                    Description = "Perfect house for a big family!",
+                    Title = "Modern house",
+                    Description = "Perfect house for a big family or a gang of friends",
                     Address = "HouseStreet 27",
                     Contact = "0888-888-888",
                     ConstructionYear = 2014,
@@ -149,7 +156,8 @@ namespace Entities.Configuration
                     CanBeRented = false,
                     CanBeSold = true,
                     RealEstateTypeId = 2,
-                    UserName = "Classe"
+                    UserName = "Classe",
+                    ImgUrl = "/uploads/house4.jpg"
                 },
                  new RealEstate()
                  {
@@ -166,7 +174,8 @@ namespace Entities.Configuration
                      CanBeRented = false,
                      CanBeSold = true,
                      RealEstateTypeId = 3,
-                     UserName = "Marcus"
+                     UserName = "Marcus",
+                     ImgUrl = "/uploads/office1.jpg"
                  },
                  new RealEstate()
                  {
@@ -183,7 +192,8 @@ namespace Entities.Configuration
                      CanBeRented = false,
                      CanBeSold = true,
                      RealEstateTypeId = 3,
-                     UserName = "Marcus"
+                     UserName = "Marcus",
+                     ImgUrl = "/uploads/office2.jpg"
                  },
                  new RealEstate()
                  {
@@ -200,7 +210,8 @@ namespace Entities.Configuration
                      CanBeRented = false,
                      CanBeSold = true,
                      RealEstateTypeId = 4,
-                     UserName = "Marcus"
+                     UserName = "Marcus",
+                     ImgUrl = "/uploads/warehouse1.jpg"
                  }
             );
         }
