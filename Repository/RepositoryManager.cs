@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -21,14 +22,16 @@ namespace Repository
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
+        private readonly IHostingEnvironment _environment;
 
-        public RepositoryManager(RepositoryContext repositoryContext, AuthenticationContext authenticationContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public RepositoryManager(RepositoryContext repositoryContext, AuthenticationContext authenticationContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IHostingEnvironment environment)
         {
             _repositoryContext = repositoryContext;
             _authenticationContext = authenticationContext;
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
+            _environment = environment;
         }
 
         public IRealEstateRepository RealEstate
@@ -36,7 +39,7 @@ namespace Repository
             get
             {
                 if (_realEstateRepository == null)
-                    _realEstateRepository = new RealEstateRepository(_repositoryContext);
+                    _realEstateRepository = new RealEstateRepository(_repositoryContext, _environment);
                 return _realEstateRepository;
             }
         }

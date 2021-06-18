@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -72,6 +73,5 @@ namespace RealEstatesAPI.Extensions
         {
             services.AddSingleton<ILoggerManager, LoggerManager>();
         }
-
     }
 }

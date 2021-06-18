@@ -25,7 +25,14 @@ namespace RealEstatesAPI.Controllers
         {
             _accountRepository = accountRepository;
         }
-        //register
+        /// <summary>
+        /// Register a new user
+        /// </summary>
+        /// <remarks>
+        /// Register a new user/account with standard privs (user)
+        /// </remarks>
+        /// <returns>
+        /// </returns>
         [HttpPost]
         [Route("api/account/register")]
         public async Task<IActionResult> Register([FromForm] RegisterModel newUser)
@@ -37,7 +44,14 @@ namespace RealEstatesAPI.Controllers
             }
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }
-
+        /// <summary>
+        /// Retrieves a JWT token for a registered user
+        /// </summary>
+        /// <remarks>
+        /// Retrieves a JWT token for a registered user, the token is valid for 14 days.
+        /// </remarks>
+        /// <returns>
+        /// </returns>
         [HttpPost]
         [Route("token")]
         public async Task<IActionResult> Login([FromForm] LoginModel loginInfo)

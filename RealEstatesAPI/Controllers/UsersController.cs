@@ -25,6 +25,14 @@ namespace RealEstatesAPI.Controllers
             _mapper = mapper;
         }
         [AllowAnonymous]
+        /// <summary>
+        /// Get stats for user
+        /// </summary>
+        /// <remarks>
+        /// Retrieves all available stats for a certain user by provided username
+        /// </remarks>
+        /// <returns>
+        /// </returns>
         [HttpGet("{username}")]
         public async Task<ActionResult<UserDto>> GetUser(string username)
         {
@@ -47,17 +55,14 @@ namespace RealEstatesAPI.Controllers
 
             return Ok(userToSend) ;
         }
-        //[HttpGet]
-        //[Route("/testing/test")]
-        //public ActionResult TestFunc()
-        //{
-        //    var user = _repository.Account.GetUserById("7012ec90-74f1-4154-a312-5091b56f0dd7").Result;
-        //    user.Rating = 3;
-        //    user.amountOfRatings++;
-        //    var res = _repository.Account.UpdateUser(user);
-        //    _repository.Save();
-        //    return Ok();
-        //}
+        /// <summary>
+        /// Rate a user
+        /// </summary>
+        /// <remarks>
+        /// Rate a user with a value from 1-5
+        /// </remarks>
+        /// <returns>
+        /// </returns>
         [HttpPost("rate")]
         public async Task<ActionResult> RateUser(RateUserDto userRating)
         {
@@ -76,7 +81,14 @@ namespace RealEstatesAPI.Controllers
             return Ok();
         }
 
-
+        /// <summary>
+        /// Get stats for user
+        /// </summary>
+        /// <remarks>
+        /// rate a user by ther username
+        /// </remarks>
+        /// <returns>
+        /// </returns>
         [HttpPost("rateByUserName")]
         public async Task<ActionResult> RateByUserName(RateUserByUserNameDto userRatingDto)
         {

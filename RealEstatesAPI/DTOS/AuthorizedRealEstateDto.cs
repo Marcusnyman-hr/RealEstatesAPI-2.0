@@ -22,6 +22,7 @@ namespace RealEstatesAPI.DTOS
         public bool CanBeRented { get; set; }
         public string Contact { get; set; }
         public string UserName { get; set; }
+        public string ImgUrl { get; set; }
 
         public ICollection<CommentDto> Comments { get; set; }
     }

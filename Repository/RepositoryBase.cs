@@ -1,5 +1,6 @@
 ﻿using Contracts;
 using Entities;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,15 @@ namespace Repository
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         protected RepositoryContext RepositoryContext;
+        protected IHostingEnvironment _environment;
         public RepositoryBase(RepositoryContext repositoryContext)
         {
             RepositoryContext = repositoryContext;
+        }
+        public RepositoryBase(RepositoryContext repositoryContext, IHostingEnvironment environment)
+        {
+            RepositoryContext = repositoryContext;
+            _environment = environment;
         }
         public IQueryable<T> FindAll(bool trackChanges) =>
             !trackChanges ?
